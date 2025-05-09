@@ -1,2 +1,2 @@
 # Reservo
-A mobile application that allows the user to reserve hotel rooms.
+A mobile application that allows the reservoUser to reserve hotel rooms.
