@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface ListingRepository extends JpaRepository<Listing, Long> {
-    List<Listing> findBYPosterId(long posterId);
+    List<Listing> findByReservoUser_Id(long userId);
     List<Listing> findByCityId(long cityId);
     List<Listing> findByPropertyTypeId(long propertyTypeId);
 }
