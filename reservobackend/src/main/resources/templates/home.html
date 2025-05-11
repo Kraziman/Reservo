@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservo</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<!-- Header -->
+<header>
+    <div class="header-content">
+        <h1>Reservo</h1>
+        <form th:action="@{/logout}" method="post" style="display:inline;">
+            <button type="submit" class="logout-button">Logout</button>
+        </form>
+    </div>
+</header>
+
+<!-- Main Section -->
+<main class="main-content">
+    <h1>Welcome, <span th:text="${username}"></span>!</h1>
+    <p>You are logged in. Explore your bookings, or make a new one!</p>
+
+    <!-- Booking Actions -->
+    <section class="action-buttons">
+        <a href="/your-bookings" class="button">Your Bookings</a>
+        <a href="/new-booking" class="button">New Booking</a>
+    </section>
+
+    <!-- Info Section -->
+    <section class="info-section">
+        <h3>Explore Our Services</h3>
+        <p>Find the best places to stay, manage your reservations, and enjoy your trip!</p>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2025 Reservo. All rights reserved.</p>
+    <p>CREATED BY KRAZIMAN</p>
+</footer>
+
+</body>
+</html>
