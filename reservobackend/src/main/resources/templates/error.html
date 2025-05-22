@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" href="/images/Reservo_logo.png" type="image/x-icon">
+</head>
+<body>
+<header>
+    <div class="header">
+        <div class="logo">
+            <a href="/home">
+                <img src="/images/Reservo_logo.png" alt="Reservo Logo">
+                <h1>Reservo</h1>
+            </a>
+        </div>
+        <div class="action-bar">
+            <a th:href="@{/your-bookings}"><button class="action-button">Reservations</button></a>
+            <a th:href="@{/listings}"><button class="action-button">Listings</button></a>
+            <form th:action="@{/logout}" method="post" style="display:inline;">
+                <button type="submit" class="action-button">Logout</button>
+            </form>
+        </div>
+    </div>
+</header>
+
+<main class="main-page">
+    <div class="error-container">
+        <h1>ERROR <span th:text="${status}">500</span></h1>
+
+        <details open>
+            <summary>Click to view error details</summary>
+            <pre id="errorText" th:text="${error} + '\n' + ${message} + '\n\n' + ${trace}">An error occurred</pre>
+        </details>
+
+        <button onclick="copyError()">Copy to clipboard</button>
+    </div>
+
+    <!-- Fading message -->
+    <div id="fadeMessage" class="fade-message">Copied to clipboard!</div>
+</main>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2025 Reservo. All rights reserved.</p>
+    <p>CREATED BY KRAZIMAN</p>
+</footer>
+
+<script>
+    function copyError() {
+        const text = document.querySelector("pre").innerText;  // Get text from the <pre> tag inside the details block
+        navigator.clipboard.writeText(text).then(function () {
+            // Show the fade message
+            const fadeMessage = document.getElementById("fadeMessage");
+            fadeMessage.style.display = "block";
+
+            // Fade out the message after 2 seconds
+            setTimeout(function() {
+                fadeMessage.style.opacity = "0";  // Make it fade
+                setTimeout(function() {
+                    fadeMessage.style.display = "none";  // Hide after fading
+                    fadeMessage.style.opacity = "1";  // Reset opacity for next time
+                }, 500);
+            }, 2000);
+        }, function (err) {
+            // Handle errors here (optional)
+            console.error("Failed to copy text: " + err);
+        });
+    }
+
+</script>
+
+</body>
+</html>

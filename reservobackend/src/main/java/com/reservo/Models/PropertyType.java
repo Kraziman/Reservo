@@ -3,6 +3,7 @@ package com.reservo.Models;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "property_types")
 public class PropertyType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

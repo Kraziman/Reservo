@@ -4,16 +4,61 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" href="/images/Reservo_logo.png" type="image/x-icon">
 </head>
 <body>
-<div class="form-container">
-    <h2>Login</h2>
-    <form th:action="@{/login}" method="post">
-        <input type="text" name="username" placeholder="Username" required />
-        <input type="password" name="password" placeholder="Password" required />
-        <button type="submit">Login</button>
-    </form>
-    <p>Don't have an account? <a th:href="@{/register}">Register here</a></p>
-</div>
+<main class="main-page">
+    <div class="form-logo">
+        <a>
+            <img src="/images/Reservo_logo.png" alt="Reservo Logo">
+            <h1>Reservo</h1>
+        </a>
+    </div>
+    <div class="form-container">
+        <h2>Login</h2>
+        <form class="login-form" th:action="@{/login}" method="post">
+            <input type="text" name="username" placeholder="Username" required />
+            <input type="password" name="password" placeholder="Password" required />
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a th:href="@{/register}">Register here</a></p>
+    </div>
+
+    <!-- Fading error message -->
+    <div id="fadeMessage" class="fade-message-entry" th:if="${error}" th:text="${error}"></div>
+
+    <!-- Fading success message -->
+    <div id="fadeSuccess" class="fade-message-entry success" th:if="${success}" th:text="${success}"></div>
+
+</main>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2025 Reservo. All rights reserved.</p>
+    <p>CREATED BY KRAZIMAN</p>
+</footer>
+
+<script>
+    window.addEventListener("DOMContentLoaded", function () {
+        const error = document.getElementById("fadeMessage");
+        const success = document.getElementById("fadeSuccess");
+
+        [error, success].forEach(function (el) {
+            if (el) {
+                el.style.display = "block";
+
+                setTimeout(() => {
+                    el.style.opacity = "0";
+                    setTimeout(() => {
+                        el.style.display = "none";
+                        el.style.opacity = "1";
+                    }, 500);
+                }, 2000);
+            }
+        });
+    });
+</script>
+
+
 </body>
 </html>

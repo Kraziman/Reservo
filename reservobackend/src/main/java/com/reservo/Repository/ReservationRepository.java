@@ -10,4 +10,6 @@ import java.util.List;
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
     List<Reservation> findByReservoUser_Id(long userId);
     List<Reservation> findByListingId(long listingId);
+
+    int countByListingId(long listingId);
 }

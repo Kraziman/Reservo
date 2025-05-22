@@ -11,4 +11,5 @@ public interface ReservoUserRepository extends JpaRepository<ReservoUser, Long> 
     ReservoUser findByUsername(String username);
 
     boolean existsByUsername(String username);
+    boolean existsByEmail(String email);
 }

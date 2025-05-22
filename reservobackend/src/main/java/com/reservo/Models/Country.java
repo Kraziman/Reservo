@@ -3,9 +3,11 @@ package com.reservo.Models;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "countries")
 public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "country_id")
     private long id;
 
     @Column(name = "country_name")

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listing Details</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <div class="header">
+        <div class="logo">
+            <a href="/home">
+                <img src="/images/Reservo_logo.png" alt="Reservo Logo">
+                <h1>Reservo</h1>
+            </a>
+        </div>
+        <div class="action-bar">
+            <a th:href="@{/your-bookings}"><button class="action-button">Reservations</button></a>
+            <a th:href="@{/listings}"><button class="action-button">Listings</button></a>
+            <form th:action="@{/logout}" method="post" style="display:inline;">
+                <button type="submit" class="action-button">Logout</button>
+            </form>
+        </div>
+    </div>
+</header>
+
+<main class="main-page">
+    <div class="listing-details-page">
+        <div class="listing-gallery">
+            <img th:src="@{${listing.safeImagePath}}" alt="Listing Image" class="listing-main-image"/>
+        </div>
+
+        <div class="listing-info">
+            <div class="title-rating-row">
+                <h2 th:text="${listing.title}">Title</h2>
+                <span class="average-rating">
+                    <strong>★</strong>
+                    <span th:text="${#numbers.formatDecimal(averageRating, 1, 1)} + ' / 5'">0 / 5</span>
+                </span>
+            </div>
+
+            <div class="listing-info-details">
+                <p><strong>City:</strong> <span th:text="${listing.city.name}"></span></p>
+                <p><strong>Type:</strong> <span th:text="${listing.propertyType.name}"></span></p>
+                <p><strong>Guests:</strong> <span th:text="${listing.max_guests}"></span></p>
+                <p><strong>Bedrooms:</strong> <span th:text="${listing.bedrooms}"></span></p>
+                <p><strong>Price:</strong> <span th:text="${listing.pricePerNight}"></span> <span th:text="${listing.currency}"></span> / night</p>
+                <p><strong>Description:</strong> <span th:text="${listing.description}"></span></p>
+                <p><strong>Times Reserved:</strong> <span th:text="${reservationCount}">0</span></p>
+                <form id="reserve-form" th:action="@{'/listing/' + ${listing.id} + '/reserve'}" method="post">
+                    <button type="submit">Reservo!</button>
+                </form>
+
+                <!-- Reservation Modal -->
+                <div id="reservationModal" class="modal">
+                    <div class="modal-content">
+                        <p>Reservation successful! What would you like to do?</p>
+                        <div class="modal-actions">
+                            <button onclick="goToReservations()">Go to Reservations</button>
+                            <button onclick="continueBrowsing()">Continue Browsing</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Review Form -->
+        <section class="review-section">
+            <h3>Add a Review</h3>
+            <form th:action="@{'/listing/' + ${listing.id} + '/review'}" method="post">
+                <label for="rating">Rating:</label>
+                <select name="rating" id="rating" required>
+                    <option th:each="i : ${#numbers.sequence(1, 5)}" th:value="${i}" th:text="${i + ' Star(s)'}"></option>
+                </select>
+
+                <label for="comment">Comment:</label>
+                <textarea name="comment" id="comment" rows="4" required></textarea>
+
+                <button type="submit">Submit Review</button>
+            </form>
+        </section>
+
+        <!-- Display Reviews -->
+        <section class="all-reviews">
+            <h3>User Reviews</h3>
+            <div th:each="review : ${reviews}" class="review">
+                <p><strong th:text="${review.user.username}"></strong></p>
+                <span class="review-rating">
+                    <strong>★</strong>
+                    <span th:text="${review.rating} + ' / 5'">0 / 5</span>
+                </span>
+                <p th:text="${review.comment}"></p>
+            </div>
+        </section>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2025 Reservo. All rights reserved.</p>
+    <p>CREATED BY KRAZIMAN</p>
+</footer>
+
+
+<script>
+    document.getElementById("reserve-form").addEventListener("submit", function (event) {
+        event.preventDefault(); // stop form from submitting
+
+        // Submit the form via fetch
+        fetch(this.action, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(response => {
+            if (response.redirected || response.ok) {
+                // show modal on success
+                document.getElementById("reservationModal").style.display = "block";
+            } else {
+                alert("Reservation failed.");
+            }
+        });
+    });
+
+    function goToReservations() {
+        window.location.href = "/reservations";
+    }
+
+    function continueBrowsing() {
+        window.location.href = "/listings";
+    }
+</script>
+
+
+</body>
+</html>

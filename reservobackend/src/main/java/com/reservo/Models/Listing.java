@@ -2,7 +2,11 @@ package com.reservo.Models;
 
 import jakarta.persistence.*;
 
+import java.io.File;
+import java.util.List;
+
 @Entity
+@Table(name = "listings")
 public class Listing {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,6 +45,8 @@ public class Listing {
 
     @Column(name = "currency")
     private String currency;
+
+    @Column
 
     public long getId() {
         return id;
@@ -81,6 +87,31 @@ public class Listing {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    @OneToMany(mappedBy = "listing", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ListingImage> images;
+
+    public List<ListingImage> getImages() {
+        return images;
+    }
+
+    public void setImages(List<ListingImage> images) {
+        this.images = images;
+    }
+
+    @Transient
+    public String getSafeImagePath() {
+        if (images != null && !images.isEmpty()) {
+            for (ListingImage img : images) {
+                File file = new File(img.getPath());
+                if (file.exists()) {
+                    return img.getPath();
+                }
+            }
+        }
+        return "/images/placeholder.jpg"; // Relative to public resources (e.g., static/)
+    }
+
 
     public City getCity() {
         return city;

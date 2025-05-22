@@ -26,4 +26,12 @@ public class ReservoUserService {
         reservoUserRepository.save(user);
     }
 
+    public boolean usernameExists(String username) {
+        return reservoUserRepository.existsByUsername(username);
+    }
+
+    public boolean emailExists(String email) {
+        return reservoUserRepository.existsByEmail(email);
+    }
+
 }

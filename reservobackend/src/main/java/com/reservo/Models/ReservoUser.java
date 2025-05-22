@@ -1,8 +1,10 @@
 package com.reservo.Models;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
+@Table(name = "reservo_users")
 public class ReservoUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,9 +26,10 @@ public class ReservoUser {
     @Column(name = "username")
     private String username;
 
-    @Column(name = "password")
+    @Column(name = "userpassword")
     private String password;
 
+    @CreationTimestamp
     @Column(name = "date_of_creation")
     private String date_of_creation;
 

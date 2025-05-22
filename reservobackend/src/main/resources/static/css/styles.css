@@ -1,18 +1,123 @@
-body {
+html, body {
     font-family: Arial, sans-serif;
-    background-color: #f1f1f1;
+    background: linear-gradient(to bottom right, black 0%, #333333 19%, #550044 34%, #660055 47%, #770066 56.5%, #880077 65%, #990088 73%, #aa0099 80.2%, #cc00aa 86.1%, #dd00bb 91%, #ee00cc 95.2%, #ee00cc 98.2%, transparent 100%);
     display: flex;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+html{
+    background: transparent;
+}
+header {
+    background-color: #333;
+    color: white;
+    padding: 0;
+    margin: 0;
+    width: 100%;
 }
 
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    height: 10vh;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+}
+
+.logo img {
+    height: 50px;
+    width: 50px;
+}
+
+.action-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.action-button {
+    padding: 0.7em 1.4em;
+    font-size: 1rem;
+    background-color: #550044;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.action-button:hover {
+    background-color: #770066;
+}
+
+
+.main-page{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+footer {
+    min-width: 100vw;
+    text-align: center;
+    background-color: #333;
+    color: white;
+    padding-top: 1vh;
+    box-sizing: border-box;
+}
+
+/* LOGIN / REGISTER */
+.form-logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    color: white;
+    font-size: 2.5rem;
+    margin: 0;
+    padding: 0;
+}
+.form-logo img {
+    height: 120px;
+    width: 120px;
+}
+
+.form-logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+}
 .form-container {
     background-color: white;
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 300px;
+    margin-bottom: 2rem;
 }
 
 .form-container h2 {
@@ -31,7 +136,7 @@ body {
 .form-container button {
     width: 100%;
     padding: 0.5rem;
-    background-color: #4CAF50;
+    background-color: #550044;
     color: white;
     border: none;
     border-radius: 4px;
@@ -39,7 +144,7 @@ body {
 }
 
 .form-container button:hover {
-    background-color: #45a049;
+    background-color: #770066;
 }
 
 .form-container p {
@@ -47,87 +152,462 @@ body {
     margin-top: 1rem;
 }
 
-/* General Styles */
-/*  HOME PAGE   */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
-}
-
-header {
-    background-color: #333;
+.fade-message-entry {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #dc3545; /* red for error */
     color: white;
     padding: 10px 20px;
-    text-align: center;
-}
-
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logout-button {
-    background-color: #e74c3c;
-    border: none;
-    padding: 10px 20px;
-    color: white;
-    cursor: pointer;
     border-radius: 5px;
+    font-size: 16px;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
 }
 
-.logout-button:hover {
-    background-color: #c0392b;
+.fade-message-entry.success {
+    background-color: #28a745; /* green for success */
 }
 
-/* Main Content */
+
+/*  HOME PAGE   */
 .main-content {
-    padding: 20px;
+    padding: 40px 20px;
     text-align: center;
+    color: white;
+    background: linear-gradient(to bottom right, #660033, #220011);
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    margin: 2rem auto;
+    max-width: 800px;
 }
 
-.main-content h2 {
-    font-size: 2rem;
-    margin-bottom: 10px;
+.main-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
 }
 
 .main-content p {
-    font-size: 1rem;
-    margin-bottom: 20px;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
 }
 
-.action-buttons {
-    margin: 20px 0;
-}
-
-.action-buttons .button {
-    background-color: #3498db;
-    color: white;
-    padding: 15px 30px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    margin: 0 10px;
-}
-
-.action-buttons .button:hover {
-    background-color: #2980b9;
-}
-
-/* Info Section */
 .info-section {
-    margin-top: 30px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 8px;
     font-size: 1.1rem;
+    max-width: 600px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
-footer {
-    background-color: #333;
-    color: white;
-    padding: 15px 0;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
+.info-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+/* ---------------- LISTINGS PAGE ---------------- */
+.listing-page {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    box-sizing: border-box;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+.filters {
+    width: 15%;
+    min-width: 200px;
+    background: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.filters *,
+.filters *::before,
+.filters *::after {
+    box-sizing: border-box;
+}
+
+.filters label {
+    display: block;
+    margin: 0.5rem 0 0.2rem;
+    font-weight: bold;
+}
+
+.filters input,
+.filters select {
     width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    height: 40px;
+}
+
+.filters button {
+    width: 100%;
+    padding: 0.6rem;
+    background-color: #550044;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.filters button:hover {
+    background-color: #770066;
+}
+
+
+.listings {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.listing-sorter {
+    height: 1%;
+    background: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.listing-results {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.listing-card {
+    display: flex;
+    flex-direction: column;
+    width: calc(33.33% - 20px); /* Adjust width as needed */
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.listing-card:hover {
+    transform: scale(1.05);
+}
+
+.listing-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.listing-details {
+    margin-top: 15px;
+}
+
+.listing-price {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.listing-details p {
+    margin: 5px 0;
+}
+
+.listing-details .btn {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.listing-details .btn:hover {
+    background-color: #0056b3;
+}
+
+
+/* ----- Listing Details Page ----- */
+.title-rating-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.title-rating-row h2 {
+    font-size: 2.2rem;
+    color: #550044;
+    margin: 0;
+}
+
+.average-rating {
+    font-size: 1.2rem;
+    color: #ffa500; /* gold star */
+    margin-left: 1rem;
+    white-space: nowrap;
+}
+
+.listing-details-page {
+    min-width: 85vw;
+    overflow-x: hidden;
+    margin: 40px auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
+}
+
+.listing-gallery {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.listing-main-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.listing-info {
+    margin-bottom: 40px;
+}
+.listing-info-details{
+    background: #f5f5f5;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.listing-info h2 {
+    font-size: 2.2rem;
+    color: #550044;
+    margin-bottom: 1rem;
+}
+
+.listing-info p {
+    font-size: 1.1rem;
+    margin: 0.4rem 0;
+}
+
+.listing-info button {
+    padding: 0.7rem 1.5rem;
+    background-color: #550044;
+    color: white;
+    border: none;
+    border-radius: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: 10% auto;
+    text-align: center;
+}
+
+.modal-actions button {
+    margin: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-actions button:first-child {
+    background-color: #007bff;
+    color: white;
+}
+
+.modal-actions button:last-child {
+    background-color: #550044;
+    color: white;
+}
+
+
+/* ----- Review Section ----- */
+.review-section,
+.all-reviews {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 1rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.review-section h3,
+.all-reviews h3 {
+    margin-bottom: 1rem;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.review-section label {
+    display: block;
+    margin: 0.5rem 0 0.3rem;
+    font-weight: 600;
+}
+
+.review-section select,
+.review-section textarea {
+    width: 100%;
+    padding: 0.6rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+}
+
+.review-section button {
+    padding: 0.7rem 1.5rem;
+    background-color: #550044;
+    color: white;
+    border: none;
+    border-radius: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.review-section button:hover {
+    background-color: #770066;
+}
+
+/* ----- Individual Reviews ----- */
+.review {
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.review:last-child {
+    border-bottom: none;
+}
+
+.review p {
+    margin: 0.3rem 0;
+}
+
+.review-rating{
+    color: #ffa500; /* gold star */
+}
+
+
+
+/* === ERROR PAGE STYLES === */
+
+
+.error-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column ;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #f8d7da;
+    min-width: 100vh;
+    margin: 2rem 0;
+    border-radius: 10px;
+}
+
+.error-container h1 {
+    font-size: 3rem;
+    color: #721c24;
+    margin-bottom: 1rem;
+}
+
+.error-container details {
+    width: 100%;
+    max-width: 800px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.error-container summary {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.error-container pre {
+    white-space: pre-wrap;
+    word-break: break-word;
+    background-color: #f1f1f1;
+    padding: 1rem;
+    border-radius: 4px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.error-container button {
+    padding: 0.5rem 1rem;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.error-container button:hover {
+    background-color: #bd2130;
+}
+
+/* Styles for the fade message */
+.fade-message {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
 }
